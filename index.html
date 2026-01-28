@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Approval Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px; 
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+        input, select {
+            padding: 5px;
+            width: 250px;
+        }
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
+         .form-container {
+        width: 350px; /* Set a specific width for the container */
+        margin: 0 auto; /* Center the container horizontally */
+        /* Optional: Add padding, border, background-color for visual appeal */
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        select, input[type="text"] {
+            margin-bottom: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="form-container">
+    <h2>Loan Approval Prediction</h2>
+    <form action="/predict" method="post">
+
+        <label>Age</label>
+        <input type="text" name="person_age" required>
+
+        <label>Applicant Income</label>
+        <input type="text" name="person_income" required>
+
+
+        <label>House Ownership</label>
+        <select name="person_home_ownership">
+            <option value="4">Select</option>
+            <option value="3">RENT</option>
+            <option value="2">OWN</option>
+            <option value="0">MORTGAGE</option>
+            <option value="1">OTHER</option>
+        </select>
+
+        <label>Employment Length</label>
+        <input type="text" name="person_emp_length" required>
+
+        <label>Loan Intent</label>
+        <select name="loan_intent">
+            <option value="6">Select</option>
+            <option value="1">EDUCATION</option>
+            <option value="3">MEDICAL</option>
+            <option value="4">PERSONAL</option>
+            <option value="5">VENTURE</option>
+            <option value="0">DEBTCONSOLIDATION</option>
+            <option value="2">HOMEIMPROVEMENT</option>
+        </select>
+
+        <label>Grade</label>
+        <select name="loan_grade">
+            <option value="7">Select</option>
+            <option value="0">A</option>
+            <option value="1">B</option>
+            <option value="2">C</option>
+            <option value="3">D</option>
+            <option value="4">E</option>
+            <option value="5">F</option>
+            <option value="6">G</option>
+        </select>
+
+        <label>Loan Amount</label>
+        <input type="text" name="loan_amnt" required>
+
+        <label>Loan Rate</label>
+        <input type="text" name="loan_int_rate" required>
+
+        <label>Percent Income</label>
+        <input type="text" name="loan_percent_income" required>
+
+        <label>Default On File</label>
+        <select name="cb_person_default_on_file">
+            <option value="2">Select</option>
+            <option value="1">Y</option>
+            <option value="0">N</option>
+        </select>
+
+        <label>Credit History Length</label>
+        <input type="text" name="cb_person_cred_hist_length" required>
+
+        <br>
+        <input type="submit" class="submit-btn" value="Predict">
+    </form>
+    </div>
+
+    {% if result %}
+    <h3 style="margin-top: 30px;">Loan Status: <strong>{{ result }}</strong></h3>
+    {% endif %}
+
+    
+</body>
+</html>
